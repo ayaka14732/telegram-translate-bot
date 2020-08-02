@@ -118,7 +118,7 @@ dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: Message):
-	await message.answer(GREETINGS, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
+	await message.reply(GREETINGS, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
 # register command handler
 
@@ -169,7 +169,11 @@ register_handler('lzh', create_translator('wyw'))
 @dp.message_handler(commands=['yue'])
 @dp.edited_message_handler(commands=['yue'])
 async def translate_yue(message: Message):
-	text = message.get_args()
+	if message.reply_to_message:
+		text = message.reply_to_message.text
+	else:
+		text = message.get_args()
+
 	if text:
 		text = await translate(text, 'yue')
 		text = traditionalize(text)
@@ -179,7 +183,11 @@ async def translate_yue(message: Message):
 @dp.message_handler(commands=['cmn'])
 @dp.edited_message_handler(commands=['cmn'])
 async def translate_cmn(message: Message):
-	text = message.get_args()
+	if message.reply_to_message:
+		text = message.reply_to_message.text
+	else:
+		text = message.get_args()
+
 	if text:
 		text = await translate(text, 'cht', src='yue')
 		await message.reply(text)
