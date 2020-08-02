@@ -5,8 +5,8 @@ import os
 
 # call Baidu translate API
 
+import aiohttp
 import hashlib  # for MD5
-import httpx
 import random  # for generating salt
 
 # call local libraries
@@ -17,7 +17,8 @@ import ToMiddleChinese  # for Middle Chinese transcription
 
 # Telegram bot
 
-from aiogram import Bot, types, md, Dispatcher, executor
+from aiogram import Bot, Dispatcher
+from aiogram.types import Message, ParseMode
 from aiogram.utils.executor import start_webhook
 
 # secrets
@@ -38,7 +39,7 @@ WEBAPP_PORT = os.environ.get('PORT')
 
 GREETINGS = '''Meow! I am the translator bot. I can help you to do the following things.
 
-**Translate to a language:**
+*Translate to a language:*
 
 `/de` Translate to German
 `/en` Translate to English
@@ -53,13 +54,13 @@ GREETINGS = '''Meow! I am the translator bot. I can help you to do the following
 `/cmn` Translate to Mandarin (from Cantonese)
 `/yue` Translate to Cantonese
 
-**Transcription:**
+*Transcription:*
 
 `/och` Text labeling by Middle Chinese
 `/yue_jyut` Text labeling by Cantonese pronunciation (Jyutping)
 `/yue_ipa` Text labeling by Cantonese pronunciation (IPA)
 
-**Others:**
+*Others:*
 
 `/ping` Test the server connection
 
@@ -69,6 +70,15 @@ If you find me not working properly, you can [report an issue](https://github.co
 
 def md5(s):
 	return hashlib.md5(s.encode('utf-8')).hexdigest()
+
+def format_error_code(error_code):
+	default_descr = 'Error: error code ' + error_code + '. Please contact the manager.'
+	return \
+		{ '54003': 'Error: Access frequency is limited. Please reduce your calling frequency.'
+		, '54004': 'Error: The account balance is insufficient. Please contact the manager to recharge the account.'
+		, '54005': 'Error: Long requests are too frequent. Please reduce the sending frequency of long queries and try again in 3 seconds.'
+		, '58002': 'Error: The service is currently down. Please contact the manager to start the service.'
+		}.get(error_code, default_descr)
 
 async def translate(s, dest, src='auto'):
 	api_url = 'https://fanyi-api.baidu.com/api/trans/vip/translate'
@@ -82,21 +92,14 @@ async def translate(s, dest, src='auto'):
 		, 'sign': md5(BAIDU_APP_ID + s + salt + BAIDU_APP_KEY)
 		}
 	try:
-		async with httpx.AsyncClient() as client:
-			r = await client.post(api_url, data=payload, timeout=300.0)  # Wait for 5 min
-		obj = r.json()
-		if 'error_code' in obj:
-			error_code = obj['error_code']
-			default_descr = 'Error: error code ' + error_code + '. Please contact the manager.'
-			return \
-				{ '54003': 'Error: Access frequency is limited. Please reduce your calling frequency.'
-				, '54004': 'Error: The account balance is insufficient. Please contact the manager to recharge the account.'
-				, '54005': 'Error: Long requests are too frequent. Please reduce the sending frequency of long queries and try again in 3 seconds.'
-				, '58002': 'Error: The service is currently down. Please contact the manager to start the service.'
-				}.get(error_code, default_descr)
-		else:
-			text = '\n'.join(x['dst'] for x in obj['trans_result'])
-			return text
+		async with aiohttp.ClientSession() as session:
+			async with session.post(api_url, data=payload) as resp:
+				obj = await resp.json()
+				if 'error_code' in obj:
+					return format_error_code(obj['error_code'])
+				else:
+					text = '\n'.join(x['dst'] for x in obj['trans_result'])
+					return text
 	except Exception as e:
 		return 'Error: ' + str(e) + '.'
 
@@ -114,8 +117,8 @@ dp = Dispatcher(bot)
 # handle help command
 
 @dp.message_handler(commands=['start', 'help'])
-async def send_welcome(message: types.Message):
-	await message.answer(GREETINGS, parse_mode=types.ParseMode.MARKDOWN, disable_web_page_preview=True)
+async def send_welcome(message: Message):
+	await message.answer(GREETINGS, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
 # register command handler
 
@@ -126,8 +129,12 @@ def register_handler(command, f):
 # register Baidu translator
 
 def create_translator(lang):
-	async def f(message: types.Message):
-		text = message.get_args()
+	async def f(message: Message):
+		if message.reply_to_message:
+			text = message.reply_to_message.text
+		else:
+			text = message.get_args()
+
 		if text:
 			text = await translate(text, lang)
 			await message.reply(text)
@@ -161,7 +168,7 @@ register_handler('lzh', create_translator('wyw'))
 
 @dp.message_handler(commands=['yue'])
 @dp.edited_message_handler(commands=['yue'])
-async def translate_yue(message: types.Message):
+async def translate_yue(message: Message):
 	text = message.get_args()
 	if text:
 		text = await translate(text, 'yue')
@@ -171,7 +178,7 @@ async def translate_yue(message: types.Message):
 
 @dp.message_handler(commands=['cmn'])
 @dp.edited_message_handler(commands=['cmn'])
-async def translate_cmn(message: types.Message):
+async def translate_cmn(message: Message):
 	text = message.get_args()
 	if text:
 		text = await translate(text, 'cht', src='yue')
@@ -180,8 +187,12 @@ async def translate_cmn(message: types.Message):
 # register translate functions in local libraries
 
 def create_transformer(trans):
-	async def f(message: types.Message):
-		text = message.get_args()
+	async def f(message: Message):
+		if message.reply_to_message:
+			text = message.reply_to_message.text
+		else:
+			text = message.get_args()
+
 		if text:
 			text = trans(text)
 			await message.reply(text)
@@ -195,7 +206,7 @@ register_handler('yue_ipa', create_transformer(ToJyutping.get_ipa))
 
 @dp.message_handler(commands=['ping'])
 @dp.edited_message_handler(commands=['ping'])
-async def ping(message: types.Message):
+async def ping(message: Message):
 	await message.reply('pong')
 
 # start the bot

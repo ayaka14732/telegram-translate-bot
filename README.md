@@ -19,3 +19,5 @@ Set the following environment variables correctly:
 - `BOT_TOKEN`
 - `WEBHOOK_HOST`
 - `WEBHOOK_PATH`
+
+Run the Heroku application.
