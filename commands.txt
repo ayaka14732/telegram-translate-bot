@@ -47,6 +47,7 @@
 `/ht` Translate to Haitian Creole
 `/hu` Translate to Hungarian
 `/hy` Translate to Armenian
+`/ia` Translate to Interlingua
 `/id` Translate to Indonesian
 `/ig` Translate to Igbo
 `/io` Translate to Ido
@@ -58,14 +59,18 @@
 `/ka` Translate to Georgian
 `/kg` Translate to Kongo
 `/kk` Translate to Kazakh
+`/kl` Translate to Kalaallisut
+`/km` Translate to Khmer
 `/kn` Translate to Kannada
 `/ko` Translate to Korean
 `/kr` Translate to Kanuri
 `/ks` Translate to Kashmiri
 `/ku` Translate to Kurdish
 `/kw` Translate to Cornish
+`/ky` Translate to Kyrgyz
 `/la` Translate to Latin
 `/lb` Translate to Luxembourgish
+`/lg` Translate to Luganda
 `/ln` Translate to Lingala
 `/lo` Translate to Lao
 `/lt` Translate to Lithuanian
@@ -82,12 +87,15 @@
 `/ne` Translate to Nepali
 `/nl` Translate to Dutch
 `/no` Translate to Norwegian
+`/ny` Translate to Chichewa
 `/oc` Translate to Occitan
 `/oj` Translate to Ojibwa
 `/om` Translate to Oromo
 `/or` Translate to Oriya
+`/os` Translate to Ossetian
 `/pa` Translate to Punjabi
 `/pl` Translate to Polish
+`/ps` Translate to Pashto
 `/pt` Translate to Portuguese
 `/qu` Translate to Quechua
 `/rm` Translate to Romansh
@@ -135,19 +143,39 @@
 
 `/ace` Translate to Achinese
 `/ang` Translate to Old English
+`/arq` Translate to Algerian Arabic
+`/ast` Translate to Asturian
+`/bal` Translate to Baluchi
+`/bem` Translate to Bemba
+`/bho` Translate to Bhojpuri
+`/byn` Translate to Blin
+`/ceb` Translate to Cebuano
+`/chr` Translate to Cherokee
 `/cmn` Translate to Mandarin (from Cantonese)
+`/cnh` Translate to Hakha Chin
+`/cnr` Translate to Montenegrin
+`/crh` Translate to Crimean Tatar
 `/csb` Translate to Kashubian
 `/fur` Translate to Friulian
 `/grc` Translate to Ancient Greek
 `/haw` Translate to Hawaiian
+`/hil` Translate to Hiligaynon
 `/inh` Translate to Ingush
 `/jbo` Translate to Lojban
+`/kab` Translate to Kabyle
 `/kok` Translate to Konkani
 `/lzh` Translate to Classical Chinese
+`/mai` Translate to Maithili
+`/mus` Translate to Creek
 `/nap` Translate to Neapolitan
+`/nqo` Translate to N'Ko
 `/nso` Translate to Northern Sotho
+`/pap` Translate to Papiamento
+`/sco` Translate to Scots
 `/shn` Translate to Shan
 `/szl` Translate to Silesian
+`/tet` Translate to Tetum
+`/tlh` Translate to Klingon
 `/yue` Translate to Cantonese
 `/zza` Translate to Zaza
 
