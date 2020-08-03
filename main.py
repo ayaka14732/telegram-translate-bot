@@ -19,6 +19,7 @@ import ToMiddleChinese  # for Middle Chinese transcription
 
 from aiogram import Bot, Dispatcher
 from aiogram.types import Message, ParseMode
+from aiogram.utils.exceptions import MessageCantBeDeleted
 from aiogram.utils.executor import start_webhook
 
 # secrets
@@ -330,6 +331,14 @@ register_handler('och_kuxyonh', create_transformer(ToMiddleChinese.get_kuxyonh))
 register_handler('och_unt', create_transformer(ToMiddleChinese.get_unt))
 register_handler('yue_jyut', create_transformer(ToJyutping.get_jyutping))
 register_handler('yue_ipa', create_transformer(ToJyutping.get_ipa))
+
+@dp.message_handler(commands=['del'])
+async def del_msg(message: Message):
+	if message.reply_to_message:
+		try:
+			await message.reply_to_message.delete()
+		except MessageCantBeDeleted:
+			pass
 
 @dp.message_handler(commands=['ping'])
 async def ping(message: Message):
