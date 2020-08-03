@@ -1,0 +1,165 @@
+*Translation:*
+
+`/af` Translate to Afrikaans
+`/ak` Translate to Akan
+`/am` Translate to Amharic
+`/an` Translate to Aragonese
+`/ar` Translate to Arabic
+`/as` Translate to Assamese
+`/ay` Translate to Aymara
+`/az` Translate to Azerbaijani
+`/ba` Translate to Bashkir
+`/be` Translate to Belarusian
+`/bg` Translate to Bulgarian
+`/bi` Translate to Bislama
+`/bn` Translate to Bengali
+`/br` Translate to Breton
+`/bs` Translate to Bosnian
+`/ca` Translate to Catalan
+`/co` Translate to Corsican
+`/cs` Translate to Czech
+`/cv` Translate to Chuvash
+`/cy` Translate to Welsh
+`/da` Translate to Danish
+`/de` Translate to German
+`/dv` Translate to Divehi
+`/el` Translate to Greek
+`/en` Translate to English
+`/eo` Translate to Esperanto
+`/es` Translate to Spanish
+`/et` Translate to Estonian
+`/eu` Translate to Basque
+`/fa` Translate to Persian
+`/ff` Translate to Fulani
+`/fi` Translate to Finnish
+`/fo` Translate to Faroese
+`/fr` Translate to French
+`/fy` Translate to Western Frisian
+`/ga` Translate to Irish
+`/gl` Translate to Galician
+`/gn` Translate to Guarani
+`/gu` Translate to Gujarati
+`/gv` Translate to Manx
+`/ha` Translate to Hausa
+`/he` Translate to Hebrew
+`/hi` Translate to Hindi
+`/hr` Translate to Croatian
+`/ht` Translate to Haitian Creole
+`/hu` Translate to Hungarian
+`/hy` Translate to Armenian
+`/id` Translate to Indonesian
+`/ig` Translate to Igbo
+`/io` Translate to Ido
+`/is` Translate to Icelandic
+`/it` Translate to Italian
+`/iu` Translate to Inuktitut
+`/ja` Translate to Japanese
+`/jv` Translate to Javanese
+`/ka` Translate to Georgian
+`/kg` Translate to Kongo
+`/kk` Translate to Kazakh
+`/kn` Translate to Kannada
+`/ko` Translate to Korean
+`/kr` Translate to Kanuri
+`/ks` Translate to Kashmiri
+`/ku` Translate to Kurdish
+`/kw` Translate to Cornish
+`/la` Translate to Latin
+`/lb` Translate to Luxembourgish
+`/ln` Translate to Lingala
+`/lo` Translate to Lao
+`/lt` Translate to Lithuanian
+`/lv` Translate to Latvian
+`/mg` Translate to Malagasy
+`/mh` Translate to Marshallese
+`/mi` Translate to Maori
+`/mk` Translate to Macedonian
+`/ml` Translate to Malayalam
+`/mr` Translate to Marathi
+`/ms` Translate to Malay
+`/mt` Translate to Maltese
+`/my` Translate to Burmese
+`/ne` Translate to Nepali
+`/nl` Translate to Dutch
+`/no` Translate to Norwegian
+`/oc` Translate to Occitan
+`/oj` Translate to Ojibwa
+`/om` Translate to Oromo
+`/or` Translate to Oriya
+`/pa` Translate to Punjabi
+`/pl` Translate to Polish
+`/pt` Translate to Portuguese
+`/qu` Translate to Quechua
+`/rm` Translate to Romansh
+`/ro` Translate to Romanian
+`/ru` Translate to Russian
+`/rw` Translate to Kinyarwanda
+`/sa` Translate to Sanskrit
+`/sc` Translate to Sardinian
+`/sd` Translate to Sindhi
+`/se` Translate to Northern Sami
+`/si` Translate to Sinhala
+`/sk` Translate to Slovak
+`/sl` Translate to Slovenian
+`/sm` Translate to Samoan
+`/sn` Translate to Shona
+`/so` Translate to Somali
+`/sq` Translate to Albanian
+`/sr` Translate to Serbian
+`/st` Translate to Southern Sotho
+`/sv` Translate to Swedish
+`/sw` Translate to Swahili
+`/ta` Translate to Tamil
+`/te` Translate to Telugu
+`/tg` Translate to Tajik
+`/th` Translate to Thai
+`/ti` Translate to Tigrinya
+`/tk` Translate to Turkmen
+`/tl` Translate to Tagalog
+`/tr` Translate to Turkish
+`/ts` Translate to Tsonga
+`/tt` Translate to Tatar
+`/tw` Translate to Twi
+`/uk` Translate to Ukrainian
+`/ur` Translate to Urdu
+`/uz` Translate to Uzbek
+`/ve` Translate to Venda
+`/vi` Translate to Vietnamese
+`/wa` Translate to Walloon
+`/wo` Translate to Wolof
+`/xh` Translate to Xhosa
+`/yi` Translate to Yiddish
+`/yo` Translate to Yoruba
+`/zh` Translate to Chinese
+`/zu` Translate to Zulu
+
+`/ace` Translate to Achinese
+`/ang` Translate to Old English
+`/cmn` Translate to Mandarin (from Cantonese)
+`/csb` Translate to Kashubian
+`/fur` Translate to Friulian
+`/grc` Translate to Ancient Greek
+`/haw` Translate to Hawaiian
+`/inh` Translate to Ingush
+`/jbo` Translate to Lojban
+`/kok` Translate to Konkani
+`/lzh` Translate to Classical Chinese
+`/nap` Translate to Neapolitan
+`/nso` Translate to Northern Sotho
+`/shn` Translate to Shan
+`/szl` Translate to Silesian
+`/yue` Translate to Cantonese
+`/zza` Translate to Zaza
+
+*Transcription:*
+
+`/och` Text labeling by Middle Chinese
+`/och_kuxyonh` Text labeling by Middle Chinese (Kuxyonh Romanization)
+`/och_unt` Text labeling by Middle Chinese (unt’s Reading Pronunciation of _Qieyun_)
+`/yue_jyut` Text labeling by Cantonese pronunciation (Jyutping)
+`/yue_ipa` Text labeling by Cantonese pronunciation (IPA)
+
+*Others:*
+
+`/help` Show help
+`/ping` Test the server connection
