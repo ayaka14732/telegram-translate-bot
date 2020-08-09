@@ -3,4 +3,4 @@ aiohttp[speedups]
 
 opencc<2, !=1.1.1
 ToJyutping>=0.1, <0.2
-ToMiddleChinese<0.1
+ToMiddleChinese>=0.1, <0.2

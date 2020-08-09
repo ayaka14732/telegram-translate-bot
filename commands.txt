@@ -182,7 +182,7 @@
 *Transcription:*
 
 `/och` Text labeling by Middle Chinese
-`/och_kuxyonh` Text labeling by Middle Chinese (Kuxyonh Romanization)
+`/och_kyonh` Text labeling by Middle Chinese (Koxyonh Romanization)
 `/och_unt` Text labeling by Middle Chinese (unt’s Reading Pronunciation of _Qieyun_)
 `/yue_jyut` Text labeling by Cantonese pronunciation (Jyutping)
 `/yue_ipa` Text labeling by Cantonese pronunciation (IPA)

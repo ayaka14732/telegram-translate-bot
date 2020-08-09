@@ -55,7 +55,7 @@ GREETINGS = '''Meow! I am the translator bot. I can help you to do the following
 `/och` Text labeling by Middle Chinese
 `/yue_jyut` Text labeling by Cantonese pronunciation (Jyutping)
 
-You can see a full list of commands [here](https://github.com/ayaka14732/trans/blob/main/commands.txt) (extremely long!).
+You can see a full list of commands [here](https://github.com/ayaka14732/trans/blob/main/commands.txt). (extremely long!)
 If I am not working properly, please [report an issue](https://github.com/ayaka14732/trans) to my developers.'''
 
 # Baidu translate
@@ -351,7 +351,7 @@ def create_transformer(trans):
 	return f
 
 register_handler('och', create_transformer(ToMiddleChinese.get_qimyonhmieuzsjyt))
-register_handler('och_kuxyonh', create_transformer(ToMiddleChinese.get_kuxyonh))
+register_handler('och_kyonh', create_transformer(ToMiddleChinese.get_kyonh))
 register_handler('och_unt', create_transformer(ToMiddleChinese.get_unt))
 register_handler('yue_jyut', create_transformer(ToJyutping.get_jyutping))
 register_handler('yue_ipa', create_transformer(ToJyutping.get_ipa))
