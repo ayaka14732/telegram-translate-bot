@@ -95,6 +95,19 @@ async def translate(s, dest, src='auto'):
 		except Exception as e:
 			return 'Error: ' + str(e) + '.'
 
+async def furigana(s):
+	'''
+	>>> await furigana('感じ取れたら手を繋ごう、重なるのは人生のライン and レミリア最高！')
+	'感（かん）じ取（と）れたら手（て）を繋（つな）ごう、重（かさ）なるのは人生（じんせい）のライン and レミリア最高（さいこう）！'
+	'''
+	api_url = 'https://4hx.shn.hk/furigana/'  # See https://github.com/4hxcrpr7wbqz/kuroshiro
+	async with aiohttp.ClientSession() as session:
+		try:
+			async with session.post(api_url, data=s) as resp:
+				return await resp.text()
+		except Exception as e:
+			return 'Error: ' + str(e) + '.'
+
 # initialize
 
 logging.basicConfig(level=logging.INFO)
@@ -334,6 +347,20 @@ async def translate_cmn(message: Message):
 
 	if text:
 		text = await translate(text, 'cht', src='yue')
+		await message.reply(text)
+
+# furigana
+
+@dp.message_handler(commands=['ja_furi'])
+@dp.edited_message_handler(commands=['ja_furi'])
+async def translate_ja_furi(message: Message):
+	if message.reply_to_message:
+		text = message.reply_to_message.text
+	else:
+		text = message.get_args()
+
+	if text:
+		text = await furigana(text)
 		await message.reply(text)
 
 # register translate functions in local libraries

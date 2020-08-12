@@ -140,7 +140,6 @@
 `/yo` Translate to Yoruba
 `/zh` Translate to Chinese
 `/zu` Translate to Zulu
-
 `/ace` Translate to Achinese
 `/ang` Translate to Old English
 `/arq` Translate to Algerian Arabic
@@ -181,6 +180,7 @@
 
 *Transcription:*
 
+`/ja_furi` Add furigana to Japanese texts
 `/och` Text labeling by Middle Chinese
 `/och_kyonh` Text labeling by Middle Chinese (Koxyonh Romanization)
 `/och_unt` Text labeling by Middle Chinese (unt’s Reading Pronunciation of _Qieyun_)
