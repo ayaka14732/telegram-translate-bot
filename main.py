@@ -69,6 +69,7 @@ def format_error_code(error_code):
 		{ '54003': 'Error: Access frequency is limited. Please reduce your calling frequency.'
 		, '54004': 'Error: The account balance is insufficient. Please contact the manager to recharge the account.'
 		, '54005': 'Error: Long requests are too frequent. Please reduce the sending frequency of long queries and try again in 3 seconds.'
+		, '58001': 'Error: Support for this language has been temporarily cancelled.'
 		, '58002': 'Error: The service is currently down. Please contact the manager to start the service.'
 		}.get(error_code, default_descr)
 
@@ -100,7 +101,7 @@ async def furigana(s):
 	>>> await furigana('感じ取れたら手を繋ごう、重なるのは人生のライン and レミリア最高！')
 	'感（かん）じ取（と）れたら手（て）を繋（つな）ごう、重（かさ）なるのは人生（じんせい）のライン and レミリア最高（さいこう）！'
 	'''
-	api_url = 'https://4hx.shn.hk/furigana/'  # See https://github.com/4hxcrpr7wbqz/kuroshiro
+	api_url = 'https://ayaka-apps.shn.hk/furigana/'  # See https://github.com/ayaka14732/kuroshiro
 	async with aiohttp.ClientSession() as session:
 		try:
 			async with session.post(api_url, data=s) as resp:
