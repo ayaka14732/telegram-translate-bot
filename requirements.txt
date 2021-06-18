@@ -2,5 +2,5 @@ aiogram
 aiohttp[speedups]
 
 opencc<2, !=1.1.1
-ToJyutping>=0.1, <0.2
+ToJyutping>=0.2, <0.3
 ToMiddleChinese>=0.1, <0.2
