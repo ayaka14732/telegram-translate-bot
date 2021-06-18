@@ -61,53 +61,53 @@ If I am not working properly, please [report an issue](https://github.com/ayaka1
 # Baidu translate
 
 def md5(s):
-	return hashlib.md5(s.encode('utf-8')).hexdigest()
+    return hashlib.md5(s.encode('utf-8')).hexdigest()
 
 def format_error_code(error_code):
-	default_descr = 'Error: error code ' + error_code + '. Please contact the manager.'
-	return \
-		{ '54003': 'Error: Access frequency is limited. Please reduce your calling frequency.'
-		, '54004': 'Error: The account balance is insufficient. Please contact the manager to recharge the account.'
-		, '54005': 'Error: Long requests are too frequent. Please reduce the sending frequency of long queries and try again in 3 seconds.'
-		, '58001': 'Error: Support for this language has been temporarily cancelled.'
-		, '58002': 'Error: The service is currently down. Please contact the manager to start the service.'
-		}.get(error_code, default_descr)
+    default_descr = 'Error: error code ' + error_code + '. Please contact the manager.'
+    return \
+        { '54003': 'Error: Access frequency is limited. Please reduce your calling frequency.'
+        , '54004': 'Error: The account balance is insufficient. Please contact the manager to recharge the account.'
+        , '54005': 'Error: Long requests are too frequent. Please reduce the sending frequency of long queries and try again in 3 seconds.'
+        , '58001': 'Error: Support for this language has been temporarily cancelled.'
+        , '58002': 'Error: The service is currently down. Please contact the manager to start the service.'
+        }.get(error_code, default_descr)
 
 async def translate(s, dest, src='auto'):
-	api_url = 'https://fanyi-api.baidu.com/api/trans/vip/translate'
-	salt = str(random.randrange(32768, 67108864))
-	payload = \
-		{ 'q': s
-		, 'from': src
-		, 'to': dest
-		, 'appid': BAIDU_APP_ID
-		, 'salt': salt
-		, 'sign': md5(BAIDU_APP_ID + s + salt + BAIDU_APP_KEY)
-		}
-	async with aiohttp.ClientSession() as session:
-		try:
-			async with session.post(api_url, data=payload) as resp:
-				obj = await resp.json()
-				if 'error_code' in obj:
-					return format_error_code(obj['error_code'])
-				else:
-					text = '\n'.join(x['dst'] for x in obj['trans_result'])
-					return text
-		except Exception as e:
-			return 'Error: ' + str(e) + '.'
+    api_url = 'https://fanyi-api.baidu.com/api/trans/vip/translate'
+    salt = str(random.randrange(32768, 67108864))
+    payload = \
+        { 'q': s
+        , 'from': src
+        , 'to': dest
+        , 'appid': BAIDU_APP_ID
+        , 'salt': salt
+        , 'sign': md5(BAIDU_APP_ID + s + salt + BAIDU_APP_KEY)
+        }
+    async with aiohttp.ClientSession() as session:
+        try:
+            async with session.post(api_url, data=payload) as resp:
+                obj = await resp.json()
+                if 'error_code' in obj:
+                    return format_error_code(obj['error_code'])
+                else:
+                    text = '\n'.join(x['dst'] for x in obj['trans_result'])
+                    return text
+        except Exception as e:
+            return 'Error: ' + str(e) + '.'
 
 async def furigana(s):
-	'''
-	>>> await furigana('感じ取れたら手を繋ごう、重なるのは人生のライン and レミリア最高！')
-	'感（かん）じ取（と）れたら手（て）を繋（つな）ごう、重（かさ）なるのは人生（じんせい）のライン and レミリア最高（さいこう）！'
-	'''
-	api_url = 'https://ayaka-apps.shn.hk/furigana/'  # See https://github.com/ayaka14732/kuroshiro
-	async with aiohttp.ClientSession() as session:
-		try:
-			async with session.post(api_url, data=s) as resp:
-				return await resp.text()
-		except Exception as e:
-			return 'Error: ' + str(e) + '.'
+    '''
+    >>> await furigana('感じ取れたら手を繋ごう、重なるのは人生のライン and レミリア最高！')
+    '感（かん）じ取（と）れたら手（て）を繋（つな）ごう、重（かさ）なるのは人生（じんせい）のライン and レミリア最高（さいこう）！'
+    '''
+    api_url = 'https://ayaka-apps.shn.hk/furigana/'  # See https://github.com/ayaka14732/kuroshiro
+    async with aiohttp.ClientSession() as session:
+        try:
+            async with session.post(api_url, data=s) as resp:
+                return await resp.text()
+        except Exception as e:
+            return 'Error: ' + str(e) + '.'
 
 # initialize
 
@@ -124,27 +124,27 @@ dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: Message):
-	await message.reply(GREETINGS, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
+    await message.reply(GREETINGS, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
 # register command handler
 
 def register_handler(command, f):
-	dp.register_message_handler(f, commands=[command])
-	dp.register_edited_message_handler(f, commands=[command])
+    dp.register_message_handler(f, commands=[command])
+    dp.register_edited_message_handler(f, commands=[command])
 
 # register Baidu translator
 
 def create_translator(lang):
-	async def f(message: Message):
-		if message.reply_to_message:
-			text = message.reply_to_message.text
-		else:
-			text = message.get_args()
+    async def f(message: Message):
+        if message.reply_to_message:
+            text = message.reply_to_message.text
+        else:
+            text = message.get_args()
 
-		if text:
-			text = await translate(text, lang)
-			await message.reply(text)
-	return f
+        if text:
+            text = await translate(text, lang)
+            await message.reply(text)
+    return f
 
 register_handler('af', create_translator('afr'))
 register_handler('ak', create_translator('aka'))
@@ -327,56 +327,56 @@ register_handler('zza', create_translator('zaz'))
 @dp.message_handler(commands=['yue'])
 @dp.edited_message_handler(commands=['yue'])
 async def translate_yue(message: Message):
-	if message.reply_to_message:
-		text = message.reply_to_message.text
-	else:
-		text = message.get_args()
+    if message.reply_to_message:
+        text = message.reply_to_message.text
+    else:
+        text = message.get_args()
 
-	if text:
-		text = await translate(text, 'yue')
-		text = traditionalize(text)
-		text = text.replace('系', '係')  # 係 is more commonly used in Cantonese
-		await message.reply(text)
+    if text:
+        text = await translate(text, 'yue')
+        text = traditionalize(text)
+        text = text.replace('系', '係')  # 係 is more commonly used in Cantonese
+        await message.reply(text)
 
 @dp.message_handler(commands=['cmn'])
 @dp.edited_message_handler(commands=['cmn'])
 async def translate_cmn(message: Message):
-	if message.reply_to_message:
-		text = message.reply_to_message.text
-	else:
-		text = message.get_args()
+    if message.reply_to_message:
+        text = message.reply_to_message.text
+    else:
+        text = message.get_args()
 
-	if text:
-		text = await translate(text, 'cht', src='yue')
-		await message.reply(text)
+    if text:
+        text = await translate(text, 'cht', src='yue')
+        await message.reply(text)
 
 # furigana
 
 @dp.message_handler(commands=['ja_furi'])
 @dp.edited_message_handler(commands=['ja_furi'])
 async def translate_ja_furi(message: Message):
-	if message.reply_to_message:
-		text = message.reply_to_message.text
-	else:
-		text = message.get_args()
+    if message.reply_to_message:
+        text = message.reply_to_message.text
+    else:
+        text = message.get_args()
 
-	if text:
-		text = await furigana(text)
-		await message.reply(text)
+    if text:
+        text = await furigana(text)
+        await message.reply(text)
 
 # register translate functions in local libraries
 
 def create_transformer(trans):
-	async def f(message: Message):
-		if message.reply_to_message:
-			text = message.reply_to_message.text
-		else:
-			text = message.get_args()
+    async def f(message: Message):
+        if message.reply_to_message:
+            text = message.reply_to_message.text
+        else:
+            text = message.get_args()
 
-		if text:
-			text = trans(text)
-			await message.reply(text)
-	return f
+        if text:
+            text = trans(text)
+            await message.reply(text)
+    return f
 
 register_handler('och', create_transformer(ToMiddleChinese.get_qimyonhmieuzsjyt))
 register_handler('och_kyonh', create_transformer(ToMiddleChinese.get_kyonh))
@@ -386,26 +386,26 @@ register_handler('yue_ipa', create_transformer(ToJyutping.get_ipa))
 
 @dp.message_handler(commands=['del'])
 async def del_msg(message: Message):
-	if message.reply_to_message:
-		try:
-			await message.reply_to_message.delete()
-		except MessageCantBeDeleted:
-			pass
+    if message.reply_to_message:
+        try:
+            await message.reply_to_message.delete()
+        except MessageCantBeDeleted:
+            pass
 
 @dp.message_handler(commands=['ping'])
 async def ping(message: Message):
-	await message.reply('pong')
+    await message.reply('pong')
 
 # start the bot
 
 async def on_startup(dp):
-	await bot.set_webhook(WEBHOOK_URL)
+    await bot.set_webhook(WEBHOOK_URL)
 
 if __name__ == '__main__':
-	start_webhook \
-		( dispatcher=dp
-		, webhook_path=WEBHOOK_PATH
-		, on_startup=on_startup
-		, host=WEBAPP_HOST
-		, port=WEBAPP_PORT
-		)
+    start_webhook \
+        ( dispatcher=dp
+        , webhook_path=WEBHOOK_PATH
+        , on_startup=on_startup
+        , host=WEBAPP_HOST
+        , port=WEBAPP_PORT
+        )
