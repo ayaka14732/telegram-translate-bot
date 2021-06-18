@@ -187,6 +187,11 @@
 `/yue_jyut` Text labeling by Cantonese pronunciation (Jyutping)
 `/yue_ipa` Text labeling by Cantonese pronunciation (IPA)
 
+*For compatibility:*
+
+`/jyut` The same as `/yue_jyut`
+`/jyut_ipa` The same as `/yue_ipa`
+
 *Others:*
 
 `/del` Delete a previous message

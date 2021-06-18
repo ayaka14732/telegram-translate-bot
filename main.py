@@ -384,6 +384,11 @@ register_handler('och_unt', create_transformer(ToMiddleChinese.get_unt))
 register_handler('yue_jyut', create_transformer(ToJyutping.get_jyutping))
 register_handler('yue_ipa', create_transformer(ToJyutping.get_ipa))
 
+# for compatibility
+
+register_handler('jyut', create_transformer(ToJyutping.get_jyutping))
+register_handler('jyut_ipa', create_transformer(ToJyutping.get_ipa))
+
 @dp.message_handler(commands=['del'])
 async def del_msg(message: Message):
     if message.reply_to_message:
