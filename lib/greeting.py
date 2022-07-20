@@ -32,4 +32,4 @@ GREETING = f'''Meow! I am the translator bot. I can help you to do the following
 `/help` Show this help
 `/ping` Test the server connection
 
-If I am not working properly, please [report an issue](https://github.com/ayaka14732/trans) to my developers.'''
+If I am not working properly, please [report an issue](https://github.com/ayaka14732/telegram-translate) to my developers.'''
