@@ -10,12 +10,10 @@ Create a bot by talking to [BotFather](https://t.me/botfather).
 
 Register for [Baidu translate API](https://fanyi-api.baidu.com/).
 
-Set the following environment variables correctly:
+Set the following environment variables in `.env`:
 
+- `BOT_TOKEN`
 - `BAIDU_APP_ID`
 - `BAIDU_APP_KEY`
-- `BOT_TOKEN`
-- `WEBHOOK_HOST`
-- `WEBHOOK_PATH`
 
 Run `python main.py`.

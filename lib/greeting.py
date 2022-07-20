@@ -20,16 +20,16 @@ GREETING = f'''Meow! I am the translator bot. I can help you to do the following
 *Transcription:*
 
 `/furi` Add furigana to Japanese texts
-`/och` Text labeling by Middle Chinese
-`/och_kyonh` Text labeling by Middle Chinese (Koxyonh Romanization)
-`/och_unt` Text labeling by Middle Chinese (unt’s Reading Pronunciation of _Qieyun_)
-`/jyut` Text labeling by Cantonese pronunciation (Jyutping)
-`/yue_ipa` Text labeling by Cantonese pronunciation (IPA)
+`/och` Add Middle Chinese to Chinese texts (phonological description)
+`/kyonh` Add Middle Chinese to Chinese texts (Koxyonh Romanization)
+`/unt` Add Middle Chinese to Chinese texts (unt’s Reading Pronunciation of _Qieyun_)
+`/jyut` Add Jyutping to Cantonese texts
+`/yue_ipa` Add IPA to Cantonese texts
 
 *Others:*
 
 `/del` Delete a previous message
-`/help` Show help
+`/help` Show this help
 `/ping` Test the server connection
 
 If I am not working properly, please [report an issue](https://github.com/ayaka14732/trans) to my developers.'''

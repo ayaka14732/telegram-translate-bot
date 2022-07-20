@@ -44,7 +44,9 @@ register_handler('furi', make_async_handler(furigana))
 
 register_handler('och', make_handler(ToMiddleChinese.get_qimyonhmieuzsjyt))
 register_handler('och_kyonh', make_handler(ToMiddleChinese.get_kyonh))
+register_handler('kyonh', make_handler(ToMiddleChinese.get_kyonh))
 register_handler('och_unt', make_handler(ToMiddleChinese.get_unt))
+register_handler('unt', make_handler(ToMiddleChinese.get_unt))
 
 register_handler('yue_jyut', make_handler(ToJyutping.get_jyutping))
 register_handler('jyut', make_handler(ToJyutping.get_jyutping))
