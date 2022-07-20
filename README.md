@@ -1,6 +1,6 @@
 <a href="https://t.me/suginatransbot"><img src="avartar.jpeg" height="200px" align="right"/></a>
 
-# Telegram translation bot
+# telegram-translate
 
 Telegram translation bot [@suginatransbot](https://t.me/suginatransbot)
 
