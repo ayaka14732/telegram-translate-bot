@@ -7,7 +7,7 @@ sentence = 'Are you OK?'
 async def main():
     res = []
 
-    with open('baidu_api_status.csv', encoding='utf-8') as f:
+    with open('lib/baidu_api_status.csv', encoding='utf-8') as f:
         next(f)  # skip header
         for line in f:
             command, lang_code, name, _ = line.rstrip('\n').split(',')
