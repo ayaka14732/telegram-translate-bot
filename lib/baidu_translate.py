@@ -1,13 +1,12 @@
 import aiohttp
-from dotenv import dotenv_values
 from opencc import OpenCC
+import os
 import random
 
 from .md5 import md5
 
-_CONFIG = dotenv_values('.env')
-_BAIDU_APP_ID = _CONFIG['BAIDU_APP_ID']
-_BAIDU_APP_KEY = _CONFIG['BAIDU_APP_KEY']
+_BAIDU_APP_ID = os.environ['BAIDU_APP_ID']
+_BAIDU_APP_KEY = os.environ['BAIDU_APP_KEY']
 
 _simp2trad = OpenCC('s2hk').convert
 

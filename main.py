@@ -1,5 +1,7 @@
-from dotenv import dotenv_values
-import logging
+from dotenv import load_dotenv
+load_dotenv()
+
+import os
 
 from aiogram import Bot, Dispatcher, executor
 from aiogram.types import Message, ParseMode
@@ -14,12 +16,9 @@ from lib.furigana import furigana
 from lib.greeting import GREETING
 from lib.handler import make_async_handler, make_handler, make_translate_handler
 
-CONFIG = dotenv_values('.env')
-BOT_TOKEN = CONFIG['BOT_TOKEN']
-BAIDU_APP_ID = CONFIG['BAIDU_APP_ID']
-BAIDU_APP_KEY = CONFIG['BAIDU_APP_KEY']
-
-logging.basicConfig(level=logging.INFO)
+BOT_TOKEN = os.environ['BOT_TOKEN']
+BAIDU_APP_ID = os.environ['BAIDU_APP_ID']
+BAIDU_APP_KEY = os.environ['BAIDU_APP_KEY']
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot)
