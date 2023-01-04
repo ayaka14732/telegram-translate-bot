@@ -13,6 +13,7 @@ import ToMiddleChinese
 from lib.baidu_api_status import BAIDU_API_STATUS
 from lib.baidu_translate import translate_to_yue, translate_yue_to_cmn
 from lib.furigana import furigana
+from lib.zi import zi
 from lib.greeting import GREETING
 from lib.handler import make_async_handler, make_handler, make_translate_handler
 
@@ -42,16 +43,22 @@ register_handler('ja_furi', make_async_handler(furigana))
 register_handler('furi', make_async_handler(furigana))
 
 register_handler('och', make_handler(ToMiddleChinese.get_qimyonhmieuzsjyt))
+register_handler('lzh', make_handler(ToMiddleChinese.get_qimyonhmieuzsjyt))
 register_handler('och_kyonh', make_handler(ToMiddleChinese.get_kyonh))
 register_handler('kyonh', make_handler(ToMiddleChinese.get_kyonh))
 register_handler('och_unt', make_handler(ToMiddleChinese.get_unt))
 register_handler('unt', make_handler(ToMiddleChinese.get_unt))
+register_handler('och_tupa', make_handler(ToMiddleChinese.get_tupa))
+register_handler('tupa', make_handler(ToMiddleChinese.get_tupa))
 
 register_handler('yue_jyut', make_handler(ToJyutping.get_jyutping))
 register_handler('jyut', make_handler(ToJyutping.get_jyutping))
-
+register_handler('yue_text', make_handler(ToJyutping.get_jyutping_text))
+register_handler('jyut_text', make_handler(ToJyutping.get_jyutping_text))
 register_handler('yue_ipa', make_handler(ToJyutping.get_ipa))
 register_handler('jyut_ipa', make_handler(ToJyutping.get_ipa))
+
+register_handler('zi', make_handler(zi))
 
 @dp.message_handler(commands=['del'])
 async def del_msg(message: Message):

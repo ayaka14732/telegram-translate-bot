@@ -8,9 +8,11 @@ def make_handler(f: Callable[[str], str]):
     async def inner(message: Message):
         if message.reply_to_message:
             text = message.reply_to_message.text
-        else:
-            text = message.get_args()
+            if text:
+                text = f(text)
+                await message.reply_to_message.reply(text)
 
+        text = message.get_args()
         if text:
             text = f(text)
             await message.reply(text)
@@ -20,9 +22,11 @@ def make_async_handler(f: Callable[[str], Coroutine[Any, Any, str]]):
     async def inner(message: Message):
         if message.reply_to_message:
             text = message.reply_to_message.text
-        else:
-            text = message.get_args()
+            if text:
+                text = f(text)
+                await message.reply_to_message.reply(text)
 
+        text = message.get_args()
         if text:
             text = await f(text)
             await message.reply(text)

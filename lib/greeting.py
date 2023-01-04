@@ -23,8 +23,10 @@ GREETING = f'''Meow! I am the translator bot. I can help you to do the following
 `/och` Add Middle Chinese to Chinese texts (phonological description)
 `/kyonh` Add Middle Chinese to Chinese texts (Koxyonh Romanization)
 `/unt` Add Middle Chinese to Chinese texts (unt’s Reading Pronunciation of _Qieyun_)
+`/tupa` Add Middle Chinese to Chinese texts (Tshet-uinh Phonetic Alphabet)
 `/jyut` Add Jyutping to Cantonese texts
-`/yue_ipa` Add IPA to Cantonese texts
+`/jyut_text` Add Jyutping to Cantonese texts (without Chinese characters)
+`/jyut_ipa` Add IPA to Cantonese texts
 
 *Others:*
 
