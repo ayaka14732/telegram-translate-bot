@@ -15,7 +15,7 @@ from lib.baidu_translate import translate_to_yue, translate_yue_to_cmn
 from lib.furigana import furigana
 from lib.zi import zi
 from lib.greeting import GREETING
-from lib.handler import make_async_handler, make_handler, make_translate_handler
+from lib.handler import make_async_handler, make_handler, make_translate_handler, make_transcribe_handler
 
 BOT_TOKEN = os.environ['BOT_TOKEN']
 BAIDU_APP_ID = os.environ['BAIDU_APP_ID']
@@ -28,37 +28,33 @@ dp = Dispatcher(bot)
 async def send_welcome(message: Message):
     await message.reply(GREETING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
-def register_handler(command, f):
-    dp.register_message_handler(f, commands=[command])
-    dp.register_edited_message_handler(f, commands=[command])
+def register_handler(commands, f):
+    dp.register_message_handler(f, commands=commands)
+    dp.register_edited_message_handler(f, commands=commands)
 
 for command, lang_code, name, status in BAIDU_API_STATUS:
     if status == '1':
-        register_handler(command, make_translate_handler(lang_code))
+        register_handler([command], make_translate_handler(lang_code))
 
-register_handler('yue', make_async_handler(translate_to_yue))
-register_handler('cmn', make_async_handler(translate_yue_to_cmn))
+register_handler(['yue'], make_async_handler(translate_to_yue))
+register_handler(['cmn'], make_async_handler(translate_yue_to_cmn))
+register_handler(['ja_furi', 'furi'], make_async_handler(furigana))
 
-register_handler('ja_furi', make_async_handler(furigana))
-register_handler('furi', make_async_handler(furigana))
+register_handler(['och', 'lzh'], make_transcribe_handler(ToMiddleChinese.get_pos, ToMiddleChinese.get_pos_text, '（%s）'))
+register_handler(['och_text', 'lzh_text'], make_handler(ToMiddleChinese.get_pos_text))
+register_handler(['och_tupa', 'lzh_tupa', 'tupa'], make_transcribe_handler(ToMiddleChinese.get_tupa, ToMiddleChinese.get_tupa_text))
+register_handler(['och_tupa_text', 'lzh_tupa_text', 'tupa_text'], make_handler(ToMiddleChinese.get_tupa_text))
+register_handler(['och_kyonh', 'lzh_kyonh', 'kyonh'], make_transcribe_handler(ToMiddleChinese.get_kyonh, ToMiddleChinese.get_kyonh_text))
+register_handler(['och_kyonh_text', 'lzh_kyonh_text', 'kyonh_text'], make_handler(ToMiddleChinese.get_kyonh_text))
+register_handler(['och_unt', 'lzh_unt', 'unt'], make_transcribe_handler(ToMiddleChinese.get_unt, ToMiddleChinese.get_unt_text, '[%s]'))
+register_handler(['och_unt_text', 'lzh_unt_text', 'unt_text'], make_handler(ToMiddleChinese.get_unt_text))
 
-register_handler('och', make_handler(ToMiddleChinese.get_qimyonhmieuzsjyt))
-register_handler('lzh', make_handler(ToMiddleChinese.get_qimyonhmieuzsjyt))
-register_handler('och_kyonh', make_handler(ToMiddleChinese.get_kyonh))
-register_handler('kyonh', make_handler(ToMiddleChinese.get_kyonh))
-register_handler('och_unt', make_handler(ToMiddleChinese.get_unt))
-register_handler('unt', make_handler(ToMiddleChinese.get_unt))
-register_handler('och_tupa', make_handler(ToMiddleChinese.get_tupa))
-register_handler('tupa', make_handler(ToMiddleChinese.get_tupa))
+register_handler(['yue_jyut', 'jyut'], make_transcribe_handler(ToJyutping.get_jyutping, ToJyutping.get_jyutping_text))
+register_handler(['yue_text', 'jyut_text'], make_handler(ToJyutping.get_jyutping_text))
+register_handler(['yue_ipa', 'jyut_ipa'], make_transcribe_handler(ToJyutping.get_ipa, ToJyutping.get_ipa_text, '[%s]'))
+register_handler(['yue_ipa_text', 'jyut_ipa_text'], make_handler(ToJyutping.get_ipa_text))
 
-register_handler('yue_jyut', make_handler(ToJyutping.get_jyutping))
-register_handler('jyut', make_handler(ToJyutping.get_jyutping))
-register_handler('yue_text', make_handler(ToJyutping.get_jyutping_text))
-register_handler('jyut_text', make_handler(ToJyutping.get_jyutping_text))
-register_handler('yue_ipa', make_handler(ToJyutping.get_ipa))
-register_handler('jyut_ipa', make_handler(ToJyutping.get_ipa))
-
-register_handler('zi', make_handler(zi))
+register_handler(['zi'], make_handler(zi))
 
 @dp.message_handler(commands=['del'])
 async def del_msg(message: Message):
