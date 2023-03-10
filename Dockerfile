@@ -3,5 +3,6 @@ RUN pacman -Syu --noconfirm gcc python python-pip python-wheel && pacman -Sc --n
 USER appuser
 WORKDIR /home/appuser/app
 COPY . .
+RUN pip install --user setuptools
 RUN pip install --user -r requirements.txt
 CMD [ "python", "main.py" ]
