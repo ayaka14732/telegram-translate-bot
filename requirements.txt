@@ -1,6 +1,6 @@
 aiogram
 aiohttp[speedups]
 python-dotenv
-OpenCC<2, !=1.1.1
+OpenCC>=1.1.6, <2
 ToJyutping>=0.2, <0.3
 ToMiddleChinese>=0.2, <0.3
