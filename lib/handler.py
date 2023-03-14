@@ -1,4 +1,4 @@
-from typing import Any, Callable, Coroutine
+from typing import Any, Callable, Coroutine, Union, Tuple
 
 from aiogram.types import Message
 
@@ -32,6 +32,30 @@ def make_async_handler(f: Callable[[str], Coroutine[Any, Any, str]]):
         if text:
             text = await f(text)
             await message.reply(text)
+    return inner
+
+def make_async_media_handler(f: Callable[[str], Coroutine[Any, Any, Union[str, Tuple[Union[str, bytes], str]]]]):
+    async def inner(message: Message):
+        if message.reply_to_message:
+            text = message.reply_to_message.text
+            if text:
+                res = await f(text)
+                if not isinstance(res, tuple):
+                    await message.reply_to_message.reply(res)
+                elif isinstance(res[0], bytes):
+                    await message.reply_to_message.reply_photo(*res)
+                else:
+                    await message.reply_to_message.reply(*res)
+
+        text = message.get_args()
+        if text:
+            res = await f(text)
+            if not isinstance(res, tuple):
+                await message.reply(res)
+            elif isinstance(res[0], bytes):
+                await message.reply_photo(*res)
+            else:
+                await message.reply(*res)
     return inner
 
 def make_translate_handler(lang: str):

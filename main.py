@@ -13,9 +13,9 @@ import ToMiddleChinese
 from lib.baidu_api_status import BAIDU_API_STATUS
 from lib.baidu_translate import translate_to_yue, translate_yue_to_cmn
 from lib.furigana import furigana
-from lib.zi import zi
+from lib.zi import zi, zi_text
 from lib.greeting import GREETING
-from lib.handler import make_async_handler, make_handler, make_translate_handler, make_transcribe_handler
+from lib.handler import make_async_handler, make_async_media_handler, make_handler, make_translate_handler, make_transcribe_handler
 
 BOT_TOKEN = os.environ['BOT_TOKEN']
 BAIDU_APP_ID = os.environ['BAIDU_APP_ID']
@@ -54,7 +54,8 @@ register_handler(['yue_text', 'jyut_text'], make_handler(ToJyutping.get_jyutping
 register_handler(['yue_ipa', 'jyut_ipa'], make_transcribe_handler(ToJyutping.get_ipa, ToJyutping.get_ipa_text, '[%s]'))
 register_handler(['yue_ipa_text', 'jyut_ipa_text'], make_handler(ToJyutping.get_ipa_text))
 
-register_handler(['zi'], make_handler(zi))
+register_handler(['zi'], make_async_media_handler(zi))
+register_handler(['zi_text'], make_async_media_handler(zi_text))
 
 @dp.message_handler(commands=['del'])
 async def del_msg(message: Message):
