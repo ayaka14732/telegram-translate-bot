@@ -25,7 +25,7 @@ def make_async_handler(f: Callable[[str], Coroutine[Any, Any, str]]):
         if message.reply_to_message:
             text = message.reply_to_message.text
             if text:
-                text = f(text)
+                text = await f(text)
                 await message.reply_to_message.reply(text)
 
         text = message.get_args()
