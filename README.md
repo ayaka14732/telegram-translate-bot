@@ -27,6 +27,11 @@ python main.py
 
 ## Docker
 
+```sh
+git clone https://github.com/ayaka14732/telegram-translate-bot.git
+cd telegram-translate-bot
+```
+
 Clone the Furigana Server repository:
 
 ```sh
