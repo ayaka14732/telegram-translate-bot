@@ -1,0 +1,17 @@
+services:
+  api:
+    build: furigana-server
+    container_name: furigana-server
+    restart: unless-stopped
+
+  bot:
+    build: .
+    container_name: telegram-translate-bot
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - BAIDU_APP_ID=${BAIDU_APP_ID}
+      - BAIDU_APP_KEY=${BAIDU_APP_KEY}
+      - FURIGANA_API_URL=http://api:8000/
+    depends_on:
+      - api
+    restart: unless-stopped

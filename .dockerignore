@@ -1,0 +1,14 @@
+/furigana-server
+.git
+.gitignore
+venv
+/README.md
+/avartar.jpeg
+/test
+/refresh_baidu_api_status.py
+/.env.template
+/.env
+__pycache__
+*.pyc
+*.pyo
+*.pyd

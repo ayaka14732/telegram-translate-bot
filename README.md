@@ -1,35 +1,51 @@
-<a href="https://t.me/suginatransbot"><img src="avartar.jpeg" height="200px" align="right"/></a>
+<a href="https://t.me/suginatransbot"><img src="avatar.jpeg" height="200px" align="right"/></a>
 
-# telegram-translate
+# Telegram Translation Bot
 
-Telegram translation bot [@suginatransbot](https://t.me/suginatransbot)
+This repository contains the source code for the Telegram translation bot [@suginatransbot](https://t.me/suginatransbot)
 
-## Develop
+## Development
 
 Create a bot by talking to [BotFather](https://t.me/botfather).
 
-Register for [Baidu translate API](https://fanyi-api.baidu.com/).
+Register for the [Baidu Translate API](https://fanyi-api.baidu.com/).
 
 ## Run
 
-Set the following environment variables in `.env`:
+Set the following environment variables in the `.env` file:
 
 - `BOT_TOKEN`
 - `BAIDU_APP_ID`
 - `BAIDU_APP_KEY`
+- `FURIGANA_API_URL`
 
-Run:
+Then run:
 
 ```sh
 python main.py
 ```
 
-Alternatively, pass the environment variables to Docker in the command:
+## Docker
+
+Clone the Furigana Server repository:
 
 ```sh
-docker run -d \
-  -e BOT_TOKEN=<BOT_TOKEN> \
-  -e BAIDU_APP_ID=<BAIDU_APP_ID> \
-  -e BAIDU_APP_KEY=<BAIDU_APP_KEY> \
-  telegram-translate
+git clone https://github.com/ayaka14732/furigana-server.git
+cd furigana-server
+git checkout f0dbf1001ec6a863cda08f50eb294d776f0ec8e0
+```
+
+When using Docker Compose, you do not need to set `FURIGANA_API_URL`, as it is managed internally by the Compose network.
+
+Start the services:
+
+```sh
+docker compose up -d
+```
+
+To update:
+
+```sh
+git pull
+docker compose up -d --build
 ```
