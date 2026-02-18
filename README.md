@@ -17,6 +17,7 @@ Set the following environment variables in `.env`:
 - `BOT_TOKEN`
 - `BAIDU_APP_ID`
 - `BAIDU_APP_KEY`
+- `FURIGANA_API_URL`
 
 Run:
 
@@ -24,12 +25,21 @@ Run:
 python main.py
 ```
 
-Alternatively, pass the environment variables to Docker in the command:
+## Docker
 
 ```sh
-docker run -d \
-  -e BOT_TOKEN=<BOT_TOKEN> \
-  -e BAIDU_APP_ID=<BAIDU_APP_ID> \
-  -e BAIDU_APP_KEY=<BAIDU_APP_KEY> \
-  telegram-translate
+git clone --depth=1 https://github.com/ayaka14732/furigana-server.git
+```
+
+You don't need to set `FURIGANA_API_URL` because it is managed by Docker Compose.
+
+```sh
+docker compose up -d
+```
+
+Update:
+
+```sh
+git pull
+docker compose up -d --build
 ```

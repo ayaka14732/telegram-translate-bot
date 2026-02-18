@@ -1,5 +1,5 @@
-aiogram
-aiohttp[speedups]
+aiogram>=2, <3
+aiohttp[speedups]>=3, <3.9.0
 python-dotenv
 OpenCC>=1.1.6, <2
 ToJyutping>=0.2, <0.3
